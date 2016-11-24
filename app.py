@@ -5,7 +5,8 @@ import fortune
 
 
 async def handle(request):
-    message = await request.app['fortune']
+    lang = request.GET.get('lang') or 'en'
+    message = await request.app['fortune'].get(lang=lang)
     return aiohttp.web.Response(text=message)
 
 
