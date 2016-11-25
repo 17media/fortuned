@@ -6,6 +6,8 @@ import fortune
 
 async def handle(request):
     lang = request.GET.get('lang') or 'en'
+    if lang in ['zh']:
+        lang = 'zh-tw'
     message = await request.app['fortune'].get(lang=lang)
     return aiohttp.web.Response(text=message)
 
